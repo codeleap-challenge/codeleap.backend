@@ -1,0 +1,18 @@
+[project]
+name = "codeleap.backend"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "lucasxaviervieira", email = "lucasdavid.xavier@gmail.com"},
+]
+dependencies = [
+    "django>=5.1.3",
+    "psycopg2-binary>=2.9.10",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
