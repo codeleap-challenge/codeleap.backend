@@ -6,6 +6,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ["id", "username", "created_datetime", "title", "content"]
+        read_only_fields = ["id", "created_datetime"]
 
     def validate_username(self, value):
         if len(value) < 3:

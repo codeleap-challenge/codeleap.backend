@@ -15,3 +15,14 @@ class PostViewSet(ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, *args, **kwargs):
+        data = request.data
+        for field in ["id", "username", "created_datetime"]:
+            if field in data:
+                return Response(
+                    {field: f"{field} cannot be updated."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+        return super().partial_update(request, *args, **kwargs)
