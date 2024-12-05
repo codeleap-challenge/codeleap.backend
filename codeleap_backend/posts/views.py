@@ -26,3 +26,16 @@ class PostViewSet(ModelViewSet):
                 )
 
         return super().partial_update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            post = self.get_object()
+            post.delete()
+            return Response(
+                {"detail": "Post deleted sucessfuly."},
+                status=status.HTTP_204_NO_CONTENT,
+            )
+        except Post.DoesNotExist:
+            return Response(
+                {"detail": "Post not found."}, status=status.HTTP_404_NOT_FOUND
+            )
